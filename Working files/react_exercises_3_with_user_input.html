@@ -17,10 +17,25 @@
       class CityWeather extends React.Component {
         constructor(props) {
           super(props);
-          this.state = {temp: '', weather: '', icon: ''};
+          this.state = {city: '', temp: '', weather: '', icon: ''};
+        
+          this.handleChange = this.handleChange.bind(this);
+          this.handleSubmit = this.handleSubmit.bind(this);
         }
+          
+           handleChange(event) {
+        this.setState({value: event.target.value});
+  }
+           handleSubmit(event) {
+    event.preventDefault();
+  }
+          
+          ;
+
         componentDidMount() {
-          fetch('https://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=Metric&APPID=e76caabab62de13eb5135caaa9140666')
+            
+            const apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + this.state.name + '&units=Metric&APPID=e76caabab62de13eb5135caaa9140666'
+          fetch({apiURL})
           .then((response) => response.json()) 
           .then((responseData) => { 
              console.log(responseData);
@@ -36,7 +51,15 @@
             const iconURL = 'http://openweathermap.org/img/w/' +  this.state.icon + '.png'
           return (
              
-              <div><h1>Helsinki current weather</h1><br />Temperature: {this.state.temp} &deg;C <br /><br />
+              <div>
+                <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+                Temperature: {this.state.temp} &deg;C <br /><br />
                 Weather: {this.state.main} <br /><br />
                 <img src={iconURL} />
               </div>
