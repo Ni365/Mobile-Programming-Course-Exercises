@@ -42,7 +42,8 @@ class App extends Component {
           <form onSubmit={this.addTodo}>
             <fieldset>
             <legend align="left">Add to do item:</legend>
-            <p>Description:
+            <p>
+            Description:
             <input type="text" name="description" onChange={this.inputChanged} value={this.state.description}/>
             Date:
             <input type="date" name="date" onChange={this.inputChanged} value={this.state.date}/>
