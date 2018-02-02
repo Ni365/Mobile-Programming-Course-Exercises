@@ -24,7 +24,6 @@ export default class App extends React.Component {
         } if(num < guess) {
             
            const output = 'Your guess ' + guess + ' is too high';
-           const counter = counter +1;
             
             this.setState(() => {
                 return {output : output, counter : this.state.counter + 1}
