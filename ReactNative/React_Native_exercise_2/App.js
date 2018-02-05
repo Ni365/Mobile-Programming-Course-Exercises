@@ -17,25 +17,20 @@ export default class App extends React.Component {
         if(num > guess) {
            const output = 'Your guess ' + guess + ' is too low';
             
-            this.setState(() => {
-                return {output : output, counter : this.state.counter + 1}
-            });
-           
+            this.setState({output : output, counter : this.state.counter + 1});
+            
         } if(num < guess) {
             
            const output = 'Your guess ' + guess + ' is too high';
             
-            this.setState(() => {
-                return {output : output, counter : this.state.counter + 1}
-            });
+           this.setState({output : output, counter : this.state.counter + 1});
+            
         } if (num == guess) {
             
             const output = 'Congratulations!'
             Alert.alert('You guessed the number in ' + (counter + 1) + ' guesses');
             
-            this.setState(() => {
-                return {output : output}
-            });
+            this.setState({output: output});
         }
     }
     

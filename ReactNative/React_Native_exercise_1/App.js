@@ -5,29 +5,26 @@ export default class App extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {num1: '', num2: '', result: ''}
+        this.state = {num1: '', num2: '', result: '', resulttext: ''}
         }
     
     sumButtonPressed = () => {
             const result = parseInt(this.state.num1) + parseInt(this.state.num2);
         
-        this.setState(() => {
-            return {result : result}
-        });
+        this.setState({resulttext: result});
         }
     
     substractButtonPressed = () => {
         const result = parseInt(this.state.num1) - parseInt(this.state.num2);
-            this.setState(() => {
-            return {result : result}
-        });        
+        
+        this.setState({resulttext: result});
         }
 
     render() {
         
         return (
         <View style={styles.container}>
-        <Text>Result: {this.state.result}</ Text>
+        <Text>Result: {this.state.resulttext}</ Text>
             
         <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}}
             keyboardType={'numeric'}

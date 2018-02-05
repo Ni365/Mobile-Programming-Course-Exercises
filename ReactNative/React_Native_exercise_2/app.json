@@ -1,5 +1,7 @@
 {
   "expo": {
+    "name": "Number guessing game",
+    "slug": "number-guessing-game",
     "sdkVersion": "25.0.0"
   }
 }
