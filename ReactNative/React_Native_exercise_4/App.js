@@ -11,7 +11,7 @@ export default class App extends React.Component {
     addButtonPressed = () => {
         const inputText = this.state.inputText;
         
-        this.setState({data: [...this.state.data, {key: inputText}], inputText: ''});
+        this.setState({data: [...this.state.data, {key: inputText}]});
     }
     
     clearButtonPressed = () => {

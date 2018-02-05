@@ -12,14 +12,14 @@ export default class App extends React.Component {
         const result = parseInt(this.state.num1) + parseInt(this.state.num2);
         const history = this.state.num1 + " + " + this.state.num2 + " = " + result;
         
-        this.setState({resulttext: result, data: [...this.state.data, {key: history}], history: ''});
+        this.setState({resulttext: result, data: [...this.state.data, {key: history}]});
         }
     
     substractButtonPressed = () => {
         const result = parseInt(this.state.num1) - parseInt(this.state.num2);
         const history = this.state.num1 + " - " + this.state.num2 + " = " + result;
         
-        this.setState({resulttext: result, data: [...this.state.data, {key: history}], history: ''});
+        this.setState({resulttext: result, data: [...this.state.data, {key: history}]});
         }
     
   render() {
