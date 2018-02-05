@@ -3,28 +3,47 @@ import { StyleSheet, Text, View, FlatList, TextInput, Button } from 'react-nativ
 
 export default class App extends React.Component {
     
-    constructor(props) {
+     constructor(props) {
         super(props);
-        this.state = {text: '', data: []}
-    }
+        this.state = {num1: '', num2: '', result: '', resulttext: '', history: '',  data: []}
+        }
     
-    buttonPressed = () => {
+    sumButtonPressed = () => {
+        const result = parseInt(this.state.num1) + parseInt(this.state.num2);
+        const history = this.state.num1 + " + " + this.state.num2 + " = " + result;
         
-        this.setState({data: [...this.state.data, {key: this.state.text}], text: ''});
-    }
+        this.setState({resulttext: result, data: [...this.state.data, {key: history}], history: ''});
+        }
+    
+    substractButtonPressed = () => {
+        const result = parseInt(this.state.num1) - parseInt(this.state.num2);
+        const history = this.state.num1 + " - " + this.state.num2 + " = " + result;
+        
+        this.setState({resulttext: result, data: [...this.state.data, {key: history}], history: ''});
+        }
     
   render() {
     return (
     
       <View style={styles.container}>
         <View style={styles.input}>
-            <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(text) => this.setState({text})}
+            <Text>Result: {this.state.resulttext}</ Text>
+            
+        <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}}
+            keyboardType={'numeric'}
+            onChangeText={(num1) => this.setState({num1})}
             />
-
-            <Button title="Add item" onPress={this.buttonPressed} />
+            
+            <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}}
+            keyboardType={'numeric'}
+            onChangeText={(num2) => this.setState({num2})}
+            />
+        
+        <Button title="Sum" onPress={this.sumButtonPressed} />
+        <Button title="Subtract" onPress={this.substractButtonPressed}/>
         </View>
         <View style={styles.flatlist}>
+            <Text>History</Text>
             <FlatList data={this.state.data}
                 renderItem={({item}) =>
                 <Text>{item.key}</Text>} />
