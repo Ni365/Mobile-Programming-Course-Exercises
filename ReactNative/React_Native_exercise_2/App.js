@@ -5,7 +5,7 @@ export default class App extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = {guess: '', num: parseInt(Math.floor(Math.random() * 100)), output: 'Guess a number between 0 - 100!', counter: 1}
+        this.state = {guess: '', num: parseInt(Math.floor(Math.random() * 100) + 1), output: 'Guess a number between 1 - 100!', counter: 0}
         }
     
     guessButton = () => {
@@ -31,7 +31,7 @@ export default class App extends React.Component {
         } if (num == guess) {
             
             const output = 'Congratulations!'
-            Alert.alert('You guessed the number in ' + counter + ' guesses');
+            Alert.alert('You guessed the number in ' + (counter + 1) + ' guesses');
             
             this.setState(() => {
                 return {output : output}
