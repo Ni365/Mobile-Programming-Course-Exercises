@@ -19,13 +19,13 @@ export default class App extends React.Component {
             
             this.setState({output : output, counter : this.state.counter + 1});
             
-        } if(num < guess) {
+        } else if(num < guess) {
             
            const output = 'Your guess ' + guess + ' is too high';
             
            this.setState({output : output, counter : this.state.counter + 1});
             
-        } if (num == guess) {
+        } else {
             
             const output = 'Congratulations!'
             Alert.alert('You guessed the number in ' + (counter + 1) + ' guesses');
