@@ -27,14 +27,17 @@ export default class App extends React.Component {
     getConversion = () => {
         
         if (this.state.amount != '') {
+            
         for (let i = 0; i < this.state.currencies.length; i++) {
+            
             if (this.state.selectedCur === this.state.currencies[i]) {
-            const result = this.state.amount + " " + this.state.currencies[i] + " = " + (parseInt(this.state.amount) / this.state.currencyValues[i]).toFixed(2) + " €"; 
-            this.setState({result: result});
+                const result = this.state.amount + " " + this.state.currencies[i] + " = " + (parseInt(this.state.amount) / this.state.currencyValues[i]).toFixed(2) + " €"; 
+                this.setState({result: result});
+                
                   }
               }
         } else {
-            const result = "No amount entered";
+            const result = "No amount entered, please enter amount to convert";
             this.setState({result: result});
         }
     }
@@ -44,22 +47,20 @@ export default class App extends React.Component {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.container}>
-            <View style={styles.content}>
                 <Text style={{fontSize: 20}}>Convert any currency to EUR (€)</ Text>
                 <Image style={{width: 300, height: 150}} source={{uri: 'https://cdn.pixabay.com/photo/2016/09/19/17/15/currency-1680786_1280.png'}} /> 
                 <Text> {this.state.result} {"\n"} {"\n"} </ Text>
                 <TextInput placeholder='Enter amount' keyboardType={'numeric'} onChangeText={(amount) => this.setState({amount})} /> 
                 <Button title="Convert" onPress={this.getConversion} />
                 <Picker
-                    style={{height: 100, width: 100}}
+                    style={{width: 50}}
                     selectedValue={this.state.selectedCur}
                     onValueChange={(itemValue) => this.setState({selectedCur: itemValue})}
                     >
                         {this.state.currencies.map((item, key) => {
                          return <Picker.Item value={item} label={item} key={key} />
                         })}
-                </Picker> 
-                </View>
+                </Picker>
           </View>
         </TouchableWithoutFeedback>
     );
@@ -72,14 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-    
-  content: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  }
     
 });
 
