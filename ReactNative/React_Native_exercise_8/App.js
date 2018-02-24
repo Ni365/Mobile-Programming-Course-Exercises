@@ -4,14 +4,14 @@ import { StyleSheet, Text, View, Image, TextInput, Button, Picker, Alert, FlatLi
 export default class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {currencies: [], currencyValues: [], data: '', amount: '', result: 'Enter amount and choose currency', selectedCur: ''}
+        this.state = {currencies: [], currencyValues: [], amount: '', result: 'Enter amount and choose currency', selectedCur: ''}
     }
     
     fetchData = () => {
        fetch('https://api.fixer.io/latest')
         .then((response) => response.json())
         .then((responseJson) => {
-            this.setState({data: responseJson.rates, currencies: Object.keys(responseJson.rates), currencyValues: Object.values(responseJson.rates)});
+            this.setState({currencies: Object.keys(responseJson.rates), currencyValues: Object.values(responseJson.rates)});
         })
         .catch((error) => {
             Alert.alert(error);
