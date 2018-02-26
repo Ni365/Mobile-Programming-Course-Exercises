@@ -31,8 +31,6 @@ export default class App extends React.Component {
         })
     }
     
-
-    
   render() {
       
     return (
@@ -46,10 +44,6 @@ export default class App extends React.Component {
                     <MapView
                      style={styles.map}
                      region={this.state.region}
-                     initialRegion={{ latitude: 60.200692,
-                        longitude: 24.934302,
-                        latitudeDelta: 0.0322,
-                        longitudeDelta: 0.0221,}}
                             >
                     <MapView.Marker
                      coordinate={{
