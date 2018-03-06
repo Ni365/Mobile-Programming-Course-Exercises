@@ -8,6 +8,11 @@ export default class App extends React.Component {
     location: { coords: { latitude: 0, longitude: 0 }},
    };
 
+   constructor(props) {
+     super(props);
+     this.state = { address: '', marker: { latitude: 0, longitude: 0 }, }
+   }
+
   componentDidMount() {
     this.getLocation();
   }
@@ -33,11 +38,6 @@ export default class App extends React.Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { address: '', marker: { latitude: 0, longitude: 0 }, }
-  }
-
   searchAddress = () => {
       fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + this.state.address + '&key=AIzaSyAAELJPA6Tuy22LuQ_DLE-VWp6063LdGeo')
       .then((response) => response.json())
@@ -52,8 +52,6 @@ export default class App extends React.Component {
       });
   })
 }
-
-
 
   render() {
 
