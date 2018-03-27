@@ -1,20 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View, FlatList, Alert} from 'react-native';
-import {SQLite} from 'expo';
-import {FormLabel, FormInput, Button, List, ListItem} from 'react-native-elements';
+import Expo, { SQLite } from 'expo';
+import {FormLabel, FormInput, Button, List, ListItem, Icon} from 'react-native-elements';
+
 
 const db = SQLite.openDatabase('shoppingdb.db');
-
-const list = [
-  {
-    title: 'Test',
-    subtitle: 'tester',
-  },
-  {
-    title: 'Test two',
-    subtitle: 'tester2',
-  }
-]
 
 export default class App extends React.Component {
   constructor(props) {
@@ -51,21 +41,13 @@ export default class App extends React.Component {
     )
   }
 
-  listSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 5,
-          width: "80%",
-          backgroundColor: "#fff",
-          marginLeft: "10%"
-        }}
-      />
-    );
-  };
 
   render() {
-    console.log(this.state.items)
+
+    const rowData = this.state.items.map(item => (
+      <ListItem key={item.id} title={item.product} subtitle={item.amount} onPress={() => this.deleteItem(item.id)} />)
+    );
+
     return (
       <View style={styles.container}>
         <Text style={{marginTop: 30, fontSize: 25}}>Enter product & amount</Text>
@@ -77,26 +59,21 @@ export default class App extends React.Component {
         <FormInput placeholder='Amount'
           onChangeText={(amount) => this.setState({amount})}
           value={this.state.amount} />
-        <Button raised icon={{name: 'save'}} onPress={this.saveItem} title="Save" />
+          <Icon
+              reverse
+              name="sc-telegram"
+              type="evilicon"
+              color="blue"
+              raised={true}
+              underlayColor="blue"
+              onPress={this.saveItem}
+            />
         <Text style={{marginTop: 30, marginBottom: 10, fontSize: 25}}>Shopping List</Text>
-        <List>
-          {
-            this.state.items.map((item, i) => (
-              <ListItem
-                key={i}
-                title={item.product}
-                subtitle={item.amount}
-                onPress={() => this.deleteItem(item.id)}
-              />
-            ))
-          }
-        </List>
-        <FlatList
-          style={{marginLeft : "5%"}}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => <View style={styles.listcontainer}><Text style={{fontSize: 18}}>{item.product}, {item.amount}   </Text>
-          <Text style={{fontSize: 18, color: '#0000ff'}} onPress={() => this.deleteItem(item.id)}>bought</Text></View>} data={this.state.items} ItemSeparatorComponent={this.listSeparator}
-        />
+        <View style={styles.listcontainer}>
+          <List>
+            {rowData}
+          </List>
+        </View>
       </View>
     );
   }
@@ -105,13 +82,12 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   listcontainer: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    alignItems: 'center'
+    flex: 5
   }
 });
